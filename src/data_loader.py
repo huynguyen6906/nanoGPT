@@ -137,39 +137,39 @@ class Data:
         Return the training data subset.
 
         Uses the configured train_ratio to determine the split point.
-        Returns data in original order (not shuffled).
+        Returns data from the shuffled dataset to ensure randomization.
 
         Returns:
-            List of training samples
+            List of training samples from shuffledData
         """
         train_end, _ = self.getSplitIndices()
-        return self.rawData[:train_end]
+        return self.shuffleData[:train_end]
 
     def devData(self) -> List[str]:
         """
         Return the development (validation) data subset.
 
         Uses the configured dev_ratio to determine the split point.
-        Returns data in original order (not shuffled).
+        Returns data from the shuffled dataset to ensure consistent randomization.
 
         Returns:
-            List of development samples
+            List of development samples from shuffledData
         """
         train_end, dev_end = self.getSplitIndices()
-        return self.rawData[train_end:dev_end]
+        return self.shuffleData[train_end:dev_end]
 
     def testData(self) -> List[str]:
         """
         Return the test data subset.
 
         Automatically receives all remaining data after train/dev splits.
-        Returns data in original order (not shuffled).
+        Returns data from the shuffled dataset to ensure consistent randomization.
 
         Returns:
-            List of test samples
+            List of test samples from shuffledData
         """
         _, dev_end = self.getSplitIndices()
-        return self.rawData[dev_end:]
+        return self.shuffleData[dev_end:]
 
     def getBatches(self, batch_size: int) -> List[List[str]]:
         """
