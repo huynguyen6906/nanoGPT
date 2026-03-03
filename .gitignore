@@ -1,6 +1,11 @@
+# Project configuration files
 CLAUDE.md
 .claude
+
+# Log files
 */*.log
 */*/*/*.log
+
+# Python cache directories
 src/__pycache__
 */*/__pycache__
